@@ -1,0 +1,102 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0, shrink-to-fit=no')
+  title GoogleTrends Fetcher
+  script(src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous')
+  link(rel='stylesheet' href='assets/bootstrap/css/bootstrap.min.css')
+  link(rel='stylesheet' href='assets/bootstrap/css/custom.css')
+  link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i')
+  link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.1/css/all.css')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  link(rel='stylesheet' href='assets/fonts/fontawesome5-overrides.min.css')
+  // include styles
+  link(href='https://unpkg.com/frappe-datatable@0.0.5/dist/frappe-datatable.min.css' rel='stylesheet')
+  // include the dependencies
+  script(src='https://unpkg.com/sortablejs@1.7.0/Sortable.min.js')
+  script(src='https://unpkg.com/clusterize.js@0.18.0/clusterize.min.js')
+  // include the lib
+  script(src='https://unpkg.com/frappe-datatable@0.0.5/dist/frappe-datatable.min.js')
+
+#wrapper
+  nav.navbar.navbar-dark.align-items-start.sidebar.sidebar-dark.accordion.bg-gradient-primary.p-0
+    .container-fluid.d-flex.flex-column.p-0
+      a.navbar-brand.d-flex.justify-content-center.align-items-center.sidebar-brand.m-0(href='#')
+        .sidebar-brand-icon.rotate-n-15
+          i.fas.fa-chart-line
+        .sidebar-brand-text.mx-3
+          span Google Trends
+      hr.sidebar-divider.my-0
+      ul#accordionSidebar.nav.navbar-nav.text-light
+        li.nav-item(role='presentation')
+          a.nav-link.active(href='/')
+            i.fas.fa-window-maximize
+            span Table
+        //- li.nav-item(role='presentation')
+        //-   a.nav-link(href='settings')
+        //-     i.fa.fa-gear
+        //-     span Settings
+      .text-center.d-none.d-md-inline
+        button#sidebarToggle.btn.rounded-circle.border-0(type='button')
+  #content-wrapper.d-flex.flex-column
+    #content
+      nav.navbar.navbar-light.navbar-expand.bg-white.shadow.mb-4.topbar.static-top
+        .container-fluid
+          button#sidebarToggleTop.btn.btn-link.d-md-none.rounded-circle.mr-3(type='button')
+            i.fas.fa-bars
+      .container-fluid
+        button.btn-primary#updatebtn  Run Query
+        // create the container element
+        #datatable
+        script.
+          const datatable = new DataTable('#datatable', {
+              columns: [{
+                'name':'Industries',
+                'id':'i1',
+                'width': 170
+              },{
+                'name':'Keyword1',
+                'id':'i2',
+                'width': 170
+              },{
+                'name':'Keyword2',
+                'id':'i3',
+                'width': 170
+              },{
+                'name':'Keyword3',
+                'id':'i4',
+                'width': 170
+              },{
+                'name':'Keyword4',
+                'id':'i5',
+                'width': 170
+              },{
+                'name':'Keyword5',
+                'id':'i6',
+                'width': 170
+              }],
+              data: [
+                ['','','','','',''],
+                ['','','','','',''],
+                ['','','','','',''],
+                ['','','','','',''],
+                ['','','','','',''],
+                ['','','','','',''],
+                ['','','','','',''],
+                ['','','','','',''],
+                ['','','','','',''],
+                ['','','','','','']
+              ]
+          });
+
+          
+    footer.bg-white.sticky-footer
+      .container.my-auto
+        .text-center.my-auto.copyright
+          span Copyright &copy; Bikrdotnet 2019
+  a.border.rounded.d-inline.scroll-to-top(href='#page-top')
+    i.fas.fa-angle-up
+script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js')
+script(src='assets/js/theme.js')
+script(src='assets/js/tableconfig.js')

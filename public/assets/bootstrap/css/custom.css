@@ -1,0 +1,7 @@
+.navbar{
+    transition: width 1s;
+}
+
+.sidebar-brand-text{
+    transition: display 1s;
+}
