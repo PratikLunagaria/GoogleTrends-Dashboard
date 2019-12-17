@@ -31,6 +31,9 @@ $(document).ready(function () {
     $("#updatebtn").click(function (e) {
         var datapost = scrapify();
         var postLocation = "/";
+
+        $(".loading").show();
+        $(".loading_back").show();
         
         console.log('clicked');
         $.ajax({
@@ -40,6 +43,8 @@ $(document).ready(function () {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {
+                $(".loading").hide();
+                $(".loading_back").hide();
                 console.log(msg.data)
                 var byteCharacters = atob(msg.data.dl);
                 var byteNumbers = new Array(byteCharacters.length);
@@ -49,7 +54,7 @@ $(document).ready(function () {
                 var byteArray = new Uint8Array(byteNumbers);
                 var blob = new Blob([byteArray], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
                 
-                saveAs(blob, 'xlsx.xlsx');
+                saveAs(blob, 'output.xlsx');
                 // saveAs(new Blob([s2ab(msg.dl)],{type:"application/octet-stream"}), "test.xlsx")
 
                 // const blob = new Blob([new Uint8Array(msg.dl)]);
