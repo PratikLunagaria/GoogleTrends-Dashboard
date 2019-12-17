@@ -18,6 +18,15 @@ function scrapify() {
     return dataArr;
 }
 
+function s2ab(s) {
+    var buf = new ArrayBuffer(s.length);
+    var view = new Uint8Array(buf);
+    for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+    return buf;
+}
+
+
+
 $(document).ready(function () {
     $("#updatebtn").click(function (e) {
         var datapost = scrapify();
@@ -31,8 +40,20 @@ $(document).ready(function () {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {
-                alert('success');
-                console.log(msg);
+                console.log(msg.data)
+                var byteCharacters = atob(msg.data.dl);
+                var byteNumbers = new Array(byteCharacters.length);
+                for (var i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                var byteArray = new Uint8Array(byteNumbers);
+                var blob = new Blob([byteArray], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+                
+                saveAs(blob, 'xlsx.xlsx');
+                // saveAs(new Blob([s2ab(msg.dl)],{type:"application/octet-stream"}), "test.xlsx")
+
+                // const blob = new Blob([new Uint8Array(msg.dl)]);
+                // download(blob, 'out.xls');
             },
             error: function (msg) {
                 alert('failure');
